@@ -8,6 +8,6 @@ public class TireV1 implements Tire {
 
     @Override
     public void run() {
-        System.out.println(this.getClass().getSimpleName() + " is running");
+        System.out.println(this.getClass().getSimpleName() + " is running\n");
     }
 }

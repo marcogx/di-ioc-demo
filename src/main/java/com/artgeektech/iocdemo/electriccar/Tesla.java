@@ -11,9 +11,25 @@ public class Tesla {
 
     private Tire tire = new TireV1();
 
+    public Battery getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Battery battery) {
+        this.battery = battery;
+    }
+
+    public Tire getTire() {
+        return tire;
+    }
+
+    public void setTire(Tire tire) {
+        this.tire = tire;
+    }
+
     public void start() {
-        System.out.println("Tesla is starting....");
-        battery.providePower();
-        tire.run();
+        System.out.println("Tesla is starting....\n");
+        getBattery().providePower();
+        getTire().run();
     }
 }

@@ -8,6 +8,6 @@ public class BatteryV1 implements Battery {
 
     @Override
     public void providePower() {
-        System.out.println(this.getClass().getSimpleName() + " is providing power");
+        System.out.println(this.getClass().getSimpleName() + " is providing power\n");
     }
 }
