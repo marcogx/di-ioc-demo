@@ -3,7 +3,7 @@ package com.artgeektech.iocdemo.tesla.battery;
 import org.springframework.stereotype.Component;
 
 @Component(value = "chemical")
-public class ChemicalBatterySystemImpl implements BatterySystem {
+public class ChemicalBatterySystem implements BatterySystem {
 
     @Override
     public void providePower() {

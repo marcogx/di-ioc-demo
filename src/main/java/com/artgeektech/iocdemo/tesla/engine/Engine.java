@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EngineSystemImpl implements EngineSystem {
+public class Engine {
 
     private BatterySystem batterySystem;
 
     @Autowired
-    public EngineSystemImpl(@Qualifier("solar") BatterySystem batterySystem) {
+    public Engine(@Qualifier("solar") BatterySystem batterySystem) {
         this.batterySystem = batterySystem;
     }
 
-    @Override
     public void run() {
         batterySystem.providePower();
         System.out.println(this.getClass().getSimpleName() + " is running\n\n" );

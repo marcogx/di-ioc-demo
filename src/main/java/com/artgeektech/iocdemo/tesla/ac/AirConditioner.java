@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AirConditionSystemImpl implements AirConditionSystem {
+public class AirConditioner {
 
     private BatterySystem batterySystem;
 
     @Autowired
-    public AirConditionSystemImpl(@Qualifier("chemical") BatterySystem batterySystem) {
+    public AirConditioner(@Qualifier("chemical") BatterySystem batterySystem) {
         this.batterySystem = batterySystem;
     }
 
-    @Override
     public void coolDown() {
         batterySystem.providePower();
         System.out.println(this.getClass().getSimpleName() + " is cooling down the car\n\n");
