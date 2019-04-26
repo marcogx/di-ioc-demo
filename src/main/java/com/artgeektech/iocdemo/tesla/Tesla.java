@@ -8,19 +8,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class Tesla {
 
+    @Autowired
     private AirConditioner airConditionSystem;
 
-    private Engine engineSystem;
-
     @Autowired
-    public Tesla(AirConditioner airConditionSystem, Engine engineSystem) {
-        this.airConditionSystem = airConditionSystem;
-        this.engineSystem = engineSystem;
-    }
+    private Engine engineSystem;
 
     public void start() {
         System.out.println("\n\nTesla is starting....\n\n");
         airConditionSystem.coolDown();
         engineSystem.run();
     }
+
+//    @Autowired
+//    public Tesla(AirConditioner airConditionSystem, Engine engineSystem) {
+//        this.airConditionSystem = airConditionSystem;
+//        this.engineSystem = engineSystem;
+//    }
 }

@@ -8,15 +8,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class AirConditioner {
 
-    private BatterySystem batterySystem;
-
     @Autowired
-    public AirConditioner(@Qualifier("chemical") BatterySystem batterySystem) {
-        this.batterySystem = batterySystem;
-    }
+    @Qualifier("chemical")
+    private BatterySystem batterySystem;
 
     public void coolDown() {
         batterySystem.providePower();
         System.out.println(this.getClass().getSimpleName() + " is cooling down the car\n\n");
     }
+
+//    @Autowired
+//    public AirConditioner(@Qualifier("chemical") BatterySystem batterySystem) {
+//        this.batterySystem = batterySystem;
+//    }
+
 }

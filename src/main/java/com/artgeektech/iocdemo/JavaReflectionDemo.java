@@ -1,48 +1,63 @@
 package com.artgeektech.iocdemo;
 
+import com.artgeektech.iocdemo.tesla.battery.SolarBatterySystem;
+import com.artgeektech.iocdemo.tesla.engine.Engine;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 
 public class JavaReflectionDemo {
 
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+    private static Engine engineBean;
+
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         System.out.println("Demo of Java Reflection\n");
 
+        System.out.println("Before Component Annotation Handler, engineBean is null: " + engineBean + "\n");
+
+        callComponentAnnotationHandler();
+
+        callOfAutowiredAnnotationHandler();
+    }
+
+    private static void callComponentAnnotationHandler() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class<?> engineClass = Class.forName("com.artgeektech.iocdemo.tesla.engine.Engine");
         Annotation[] engineClassAnnotations = engineClass.getAnnotations();
 
         for (Annotation annotation: engineClassAnnotations) {
             if (annotation instanceof Component) {
-                System.out.println("Use reflection to create a Engine instance...\n");
-                Object engineBean = engineClass.newInstance();
-                System.out.println(engineBean);
-//                 IoCContainer.add(engineBean);
-//                Constructor<?> constructor = engineClass.getConstructor();
-                //IocContainer.initialize()
+
+                engineBean = (Engine) engineClass.newInstance();
+
+                System.out.println("engineBean is created: " + engineBean + "\n");
+
+                //IoCContainer.add(engineBean);
             }
         }
+    }
 
-//        Class c1 = EmployeeRestController.class;
-//        Annotation[] annotations = c1.getAnnotations();
-//        for (Annotation annotation: annotations) {
-//            if (annotation instanceof Component) {
-//                System.out.println("IoC Container will control its initialization...\n");
-//                // IoC Container logic....
-//            } else if (annotation instanceof RestController) {
-//                Method[] methods = c1.getMethods();
-//                for (Method method: methods) {
-//                    System.out.println("method in " + c1.getSimpleName() + " " + method.getName());
-//                    Annotation annotation1 = method.getAnnotation(RequestMapping.class);
-//                    if (annotation1 != null) {
-//                        RequestMapping requestMapping = (RequestMapping) annotation1;
-//                        System.out.println(requestMapping.method());
-//                    }
-//                    Annotation[] methodAnnotations = method.getDeclaredAnnotations();
-//                }
-//            }
-//        }
+    private static void callOfAutowiredAnnotationHandler() throws ClassNotFoundException, IllegalAccessException {
+        Class<?> engineClass = Class.forName("com.artgeektech.iocdemo.tesla.engine.Engine");
+        Field[] fields = engineClass.getDeclaredFields();
+
+        for (Field field: fields) {
+            if (field.isAnnotationPresent(Autowired.class)) {
+
+                // change the private permission
+                field.setAccessible(true);
+
+                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
+
+                SolarBatterySystem solarBatterySystem = new SolarBatterySystem();
+
+                field.set(engineBean, solarBatterySystem);
+
+                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
+
+            }
+        }
     }
 }
