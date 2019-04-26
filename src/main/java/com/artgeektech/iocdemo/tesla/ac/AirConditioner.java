@@ -1,15 +1,14 @@
 package com.artgeektech.iocdemo.tesla.ac;
 
 import com.artgeektech.iocdemo.tesla.battery.BatterySystem;
+import com.artgeektech.iocdemo.tesla.battery.ChemicalBatterySystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
 public class AirConditioner {
 
-    @Autowired
-    private BatterySystem batterySystem;
+    private BatterySystem batterySystem = new ChemicalBatterySystem();
 
     public void coolDown() {
         batterySystem.providePower();

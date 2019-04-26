@@ -2,17 +2,12 @@ package com.artgeektech.iocdemo.tesla;
 
 import com.artgeektech.iocdemo.tesla.ac.AirConditioner;
 import com.artgeektech.iocdemo.tesla.engine.Engine;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class Tesla {
 
-    @Autowired
-    private AirConditioner airConditionSystem;
+    private AirConditioner airConditionSystem = new AirConditioner();
 
-    @Autowired
-    private Engine engineSystem;
+    private Engine engineSystem = new Engine();
 
     public void start() {
         System.out.println("\n\nTesla is starting....\n\n");

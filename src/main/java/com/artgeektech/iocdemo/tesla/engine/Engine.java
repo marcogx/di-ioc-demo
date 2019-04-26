@@ -1,15 +1,14 @@
 package com.artgeektech.iocdemo.tesla.engine;
 
 import com.artgeektech.iocdemo.tesla.battery.BatterySystem;
+import com.artgeektech.iocdemo.tesla.battery.ChemicalBatterySystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
 public class Engine {
 
-    @Autowired
-    private BatterySystem batterySystem;
+    private BatterySystem batterySystem = new ChemicalBatterySystem();
 
     public void run() {
         batterySystem.providePower();
