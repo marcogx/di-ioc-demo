@@ -20,9 +20,4 @@ public class Tesla {
         engineSystem.run();
     }
 
-//    @Autowired
-//    public Tesla(AirConditioner airConditionSystem, Engine engineSystem) {
-//        this.airConditionSystem = airConditionSystem;
-//        this.engineSystem = engineSystem;
-//    }
 }

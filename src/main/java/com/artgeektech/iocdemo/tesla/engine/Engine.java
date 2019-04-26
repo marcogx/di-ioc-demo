@@ -9,17 +9,10 @@ import org.springframework.stereotype.Component;
 public class Engine {
 
     @Autowired
-    @Qualifier("solar")
     private BatterySystem batterySystem;
 
     public void run() {
         batterySystem.providePower();
         System.out.println(this.getClass().getSimpleName() + " is running\n\n" );
     }
-
-//    @Autowired
-//    public Engine(@Qualifier("solar") BatterySystem batterySystem) {
-//        this.batterySystem = batterySystem;
-//    }
-
 }
