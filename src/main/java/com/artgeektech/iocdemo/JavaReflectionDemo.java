@@ -47,7 +47,7 @@ public class JavaReflectionDemo {
         for (Field field: fields) {
             System.out.println("\n" + "field name is: " + field.getName() + "\n");
             if (field.isAnnotationPresent(Autowired.class)) {
-
+                System.out.println(field.getName() + "is has annotation of Autowired");
                 // Dependency dependency = IoCContainer.getBean(field.name);
 
                 // engineBean.setField(dependency);
