@@ -12,6 +12,8 @@ public class Engine {
     @Qualifier("solar")
     private BatterySystem batterySystem;
 
+    private String version = "V8";
+
     public void run() {
         batterySystem.providePower();
         System.out.println(this.getClass().getSimpleName() + " is running\n\n" );

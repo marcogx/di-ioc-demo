@@ -25,6 +25,7 @@ public class JavaReflectionDemo {
 
     private static void callComponentAnnotationHandler() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class<?> engineClass = Class.forName("com.artgeektech.iocdemo.tesla.engine.Engine");
+
         Annotation[] engineClassAnnotations = engineClass.getAnnotations();
 
         for (Annotation annotation: engineClassAnnotations) {
@@ -44,19 +45,28 @@ public class JavaReflectionDemo {
         Field[] fields = engineClass.getDeclaredFields();
 
         for (Field field: fields) {
+            System.out.println("\n" + "field name is: " + field.getName() + "\n");
             if (field.isAnnotationPresent(Autowired.class)) {
 
+                // Dependency dependency = IoCContainer.getBean(field.name);
+
+                // engineBean.setField(dependency);
+
+
+
+
+
+
+
+
+
+
                 // change the private permission
-                field.setAccessible(true);
-
-                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
-
-                SolarBatterySystem solarBatterySystem = new SolarBatterySystem();
-
-                field.set(engineBean, solarBatterySystem);
-
-                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
-
+//                field.setAccessible(true);
+//                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
+//                SolarBatterySystem solarBatterySystem = new SolarBatterySystem();
+//                field.set(engineBean, solarBatterySystem);
+//                System.out.println("\nEngine has a field being Autowired: " + field.getName() + "; The value now is: " + field.get(engineBean));
             }
         }
     }
